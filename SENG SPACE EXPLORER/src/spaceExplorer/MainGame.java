@@ -69,7 +69,6 @@ public class MainGame extends JFrame {
 	public LinkedList<JLabel> lblItemCountList = new LinkedList<JLabel>();			//food item count list
 	public LinkedList<JLabel> lblItemCountList2 = new LinkedList<JLabel>();			//Med item count list
 	public JButton[] ButtonList = new JButton[4];
-	public boolean tester = false;
 	
 	/**
 	 * Launch the application.

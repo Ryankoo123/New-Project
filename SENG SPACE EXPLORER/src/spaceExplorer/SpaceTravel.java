@@ -198,7 +198,7 @@ public class SpaceTravel extends JFrame {
 					PilotList[0].NumberOfMoves -= 1;
 					PilotList[1].NumberOfMoves -= 1;
 					
-					setVisible(false);
+					dispose();
 
 				} else { JOptionPane.showMessageDialog(contentPane, "Please select 2 crew members");
 				
