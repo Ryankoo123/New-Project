@@ -69,6 +69,7 @@ public class MainGame extends JFrame {
 	public LinkedList<JLabel> lblItemCountList = new LinkedList<JLabel>();			//food item count list
 	public LinkedList<JLabel> lblItemCountList2 = new LinkedList<JLabel>();			//Med item count list
 	public JButton[] ButtonList = new JButton[4];
+	public boolean tester = false;
 	
 	/**
 	 * Launch the application.
@@ -155,7 +156,7 @@ public class MainGame extends JFrame {
 		progressBar.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		progressBar.setToolTipText("Ship status.");
 		progressBar.setForeground(new Color(144, 238, 144));
-		progressBar.setBackground(new Color(100, 149, 237));
+		progressBar.setBackground(Color.WHITE);
 		contentPane.add(progressBar);
 		
 		JLabel lblHealth = new JLabel("HEALTH");
@@ -204,42 +205,37 @@ public class MainGame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		panel.setBounds(576, 308, 299, 133);
+		panel.setBounds(585, 341, 307, 322);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JToggleButton btnUseItem = new JToggleButton("Inventory");
 		btnUseItem.setEnabled(false);
-		btnUseItem.setBounds(156, 6, 138, 38);
+		btnUseItem.setBounds(22, 104, 262, 40);
 		panel.add(btnUseItem);
 		
 		JButton btnSleep = new JButton("Sleep");
 	
 		btnSleep.setEnabled(false);
-		btnSleep.setBounds(155, 46, 138, 38);
+		btnSleep.setBounds(22, 248, 262, 40);
 		panel.add(btnSleep);
 		
 		JButton btnRepairShip = new JButton("Repair ship");
 		btnRepairShip.setEnabled(false);
-		btnRepairShip.setBounds(6, 46, 138, 38);
+		btnRepairShip.setBounds(22, 176, 262, 40);
 		panel.add(btnRepairShip);
 
 		
 		
 		JButton btnLoot = new JButton("Loot");
 		btnLoot.setEnabled(false);
-		btnLoot.setBounds(6, 6, 138, 38);
+		btnLoot.setBounds(22, 32, 262, 40);
 		panel.add(btnLoot);
-		
-		JButton btnExplorePlanet_1 = new JButton("Explore planet");
-		btnExplorePlanet_1.setEnabled(false);
-		btnExplorePlanet_1.setBounds(6, 89, 288, 38);
-		panel.add(btnExplorePlanet_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		panel_1.setBounds(27, 461, 522, 202);
+		panel_1.setBounds(27, 461, 548, 202);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -299,147 +295,55 @@ public class MainGame extends JFrame {
 		btnInventoryChange.setBounds(192, 60, 138, 29);
 		panel_1.add(btnInventoryChange);
 		
-		JLabel lblMoney = new JLabel("Money: $" + GameEnvironment.money);
-		lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMoney.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblMoney.setBounds(27, 395, 207, 39);
-		contentPane.add(lblMoney);
-		
-		JLabel label = new JLabel("");
-		label.setVerticalAlignment(SwingConstants.TOP);
-		label.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/character 3.png")));
-		label.setVisible(false);
-		
-		JToggleButton tglbtnNewToggleButton = new JToggleButton("Actions");
-		tglbtnNewToggleButton.setBackground(UIManager.getColor("Button.background"));
-		tglbtnNewToggleButton.setBorder(UIManager.getBorder("Button.border"));
-		tglbtnNewToggleButton.setEnabled(false);
-		tglbtnNewToggleButton.setBounds(637, 266, 177, 40);
-		contentPane.add(tglbtnNewToggleButton);
-		tglbtnNewToggleButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (tglbtnNewToggleButton.isSelected()) {						//ENABLE btnEat  btnSleep  btnRepairShip  btnLoot  btnExplorePlanet
-//					System.out.println("A");
-					btnUseItem.setEnabled(true);
-					btnSleep.setEnabled(true);
-					btnRepairShip.setEnabled(true);
-					btnLoot.setEnabled(true);
-					btnExplorePlanet_1.setEnabled(true);
-					panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(0, 204, 153), null));
-				} else {
-//					System.out.println("B");
-					btnUseItem.setEnabled(false);
-					btnUseItem.setSelected(false);
-					btnSleep.setEnabled(false);
-					btnRepairShip.setEnabled(false);
-					btnLoot.setEnabled(false);
-					btnExplorePlanet_1.setEnabled(false);
-
-					panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-					panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-					
-					for (JButton i: btnFoodList) {
-						i.setVisible(false);
-					}
-					
-					for (JButton i: btnMedList) {
-						i.setVisible(false);
-					}
-					
-					for (JLabel i: lblItemCountList) {
-						i.setVisible(false);
-					}
-					
-					for (JLabel i: lblItemCountList2) {
-						i.setVisible(false);
-					}
-					
-					btnInventoryChange.setVisible(false);
-					lblInventory.setVisible(false);
-				}
-			}
-		});
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(576, 6, 280, 217);
-		contentPane.add(label);
-		
-		JLabel lblMembername = new JLabel("");
-		lblMembername.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblMembername.setFont(new Font("Agency FB", Font.BOLD, 25));
-		lblMembername.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMembername.setBounds(612, 226, 224, 40);
-		contentPane.add(lblMembername);
-		
-		JButton label_1 = new JButton("");
-		label_1.setContentAreaFilled(false);
-		label_1.setBorder(UIManager.getBorder("Button.border"));
-		label_1.setVisible(false);
-		label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//		label_1.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/syring.png")));
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(221, 107, 79, 75);
-		panel_1.add(label_1);
-		
-		JButton label_2 = new JButton("");
-		label_2.setContentAreaFilled(false);
-		label_2.setBorder(UIManager.getBorder("Button.border"));
-		label_2.setHorizontalTextPosition(SwingConstants.LEFT);
-		label_2.setVisible(false);
-		label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-//		label_2.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/Painkillers1.png")));
-		label_2.setBounds(371, 107, 79, 75);
-		panel_1.add(label_2);
-		
-		JButton lblMeditems = new JButton("");
-		lblMeditems.setContentAreaFilled(false);
-		lblMeditems.setBorder(UIManager.getBorder("Button.border"));
-		lblMeditems.setVisible(false);
-		lblMeditems.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblMeditems.setBounds(71, 107, 79, 75);
-		panel_1.add(lblMeditems);
-//		ImageIcon img = lblMeditems.getIcon();
-//		lblMeditems.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/Bandage1.png")));
-		lblMeditems.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		JLabel lblX = new JLabel("");
-		lblX.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX.setBounds(20, 171, 63, 20);
-		panel_1.add(lblX);
-		
-		JLabel lblX_1 = new JLabel("");
-		lblX_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX_1.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX_1.setBounds(103, 171, 63, 20);
-		panel_1.add(lblX_1);
-		
-		JLabel lblX_2 = new JLabel("");
-		lblX_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX_2.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX_2.setBounds(186, 171, 63, 20);
-		panel_1.add(lblX_2);
-		
-		JLabel lblX_3 = new JLabel("");
-		lblX_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX_3.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX_3.setBounds(269, 171, 63, 20);
-		panel_1.add(lblX_3);
-		
-		JLabel lblX_4 = new JLabel("");
-		lblX_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX_4.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX_4.setBounds(352, 171, 63, 20);
-		panel_1.add(lblX_4);
-		
-		JLabel lblX_5 = new JLabel("");
-		lblX_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblX_5.setFont(new Font("Agency FB", Font.BOLD, 18));
-		lblX_5.setBounds(435, 171, 63, 20);
-		panel_1.add(lblX_5);
-		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
 		panel_2.setVisible(false);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(902, 96, 334, 491);
+		contentPane.add(panel_3);
+		panel_3.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+		panel_3.setBackground(Color.WHITE);
+		panel_3.setLayout(null);
+		
+		JButton btnExplorePlanet = new JButton("Travel To New Planet");
+		btnExplorePlanet.setBounds(53, 389, 225, 51);
+		panel_3.add(btnExplorePlanet);
+		
+		JLabel PlanetLabel = new JLabel("Current Planet:");
+		PlanetLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		PlanetLabel.setFont(new Font("Palatino Linotype", Font.BOLD, 19));
+		PlanetLabel.setBounds(6, 27, 322, 51);
+		panel_3.add(PlanetLabel);
+		
+		/*
+		 * Initiating PlanetInfo, and adding the order of the planets
+		 * 
+		 */
+		
+		PlanetInfo PlanetInfo = new PlanetInfo();
+		Planet PlanetRed = new Planet("Planet Red", "/spaceExplorerImages/planetRed.png");	
+		Planet PlanetBlue = new Planet("Planet Red", "/spaceExplorerImages/planetBlue.png"); 
+		Planet PlanetCyan = new Planet("Planet Red", "/spaceExplorerImages/planetCyan.png"); 
+		Planet PlanetDarkBlue = new Planet("Planet Red", "/spaceExplorerImages/planetDarkBlue.png"); 
+		Planet PlanetGray = new Planet("Planet Red", "/spaceExplorerImages/planetGray.png"); 
+		Planet PlanetGreen = new Planet("Planet Red", "/spaceExplorerImages/planetGreen.png"); 
+		Planet PlanetLime = new Planet("Planet Red", "/spaceExplorerImages/planetLime.png"); 
+		Planet PlanetPurple = new Planet("Planet Red", "/spaceExplorerImages/planetPurple.png");
+		Planet PlanetYellow = new Planet("Planet Red", "/spaceExplorerImages/planetYellow.png");
+		
+		PlanetInfo.PlanetList[0] = PlanetRed;
+		PlanetInfo.PlanetList[1] = PlanetBlue;
+		PlanetInfo.PlanetList[2] = PlanetCyan;
+		PlanetInfo.PlanetList[3] = PlanetDarkBlue;
+		PlanetInfo.PlanetList[4] = PlanetGray;
+		PlanetInfo.PlanetList[5] = PlanetGreen;
+		PlanetInfo.PlanetList[6] = PlanetLime;
+		PlanetInfo.PlanetList[7] = PlanetPurple;
+		PlanetInfo.PlanetList[8] = PlanetYellow;		
+		
+
+		
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(0, 255, 204), new Color(51, 51, 255)));
 		panel_2.setBounds(902, 96, 334, 491);
 		contentPane.add(panel_2);
@@ -626,6 +530,141 @@ public class MainGame extends JFrame {
 		button_24.setBounds(231, 457, 79, 23);
 		panel_2.add(button_24);
 		
+		JLabel lblMoney = new JLabel("Money: $" + GameEnvironment.money);
+		lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMoney.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
+		lblMoney.setBounds(27, 395, 207, 39);
+		contentPane.add(lblMoney);
+		
+		JLabel label = new JLabel("");
+		label.setVerticalAlignment(SwingConstants.TOP);
+		label.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/character 3.png")));
+		label.setVisible(false);
+		
+		JToggleButton tglbtnNewToggleButton = new JToggleButton("Actions");
+		tglbtnNewToggleButton.setBackground(UIManager.getColor("Button.background"));
+		tglbtnNewToggleButton.setBorder(UIManager.getBorder("Button.border"));
+		tglbtnNewToggleButton.setEnabled(false);
+		tglbtnNewToggleButton.setBounds(650, 290, 177, 40);
+		contentPane.add(tglbtnNewToggleButton);
+		tglbtnNewToggleButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (tglbtnNewToggleButton.isSelected()) {						//ENABLE btnEat  btnSleep  btnRepairShip  btnLoot  btnExplorePlanet
+//					System.out.println("A");
+					btnUseItem.setEnabled(true);
+					btnSleep.setEnabled(true);
+					btnRepairShip.setEnabled(true);
+					btnLoot.setEnabled(true);
+					panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, new Color(0, 204, 153), null));
+				} else {
+//					System.out.println("B");
+					btnUseItem.setEnabled(false);
+					btnUseItem.setSelected(false);
+					btnSleep.setEnabled(false);
+					btnRepairShip.setEnabled(false);
+					btnLoot.setEnabled(false);
+
+					panel.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+					panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
+					
+					for (JButton i: btnFoodList) {
+						i.setVisible(false);
+					}
+					
+					for (JButton i: btnMedList) {
+						i.setVisible(false);
+					}
+					
+					for (JLabel i: lblItemCountList) {
+						i.setVisible(false);
+					}
+					
+					for (JLabel i: lblItemCountList2) {
+						i.setVisible(false);
+					}
+					
+					btnInventoryChange.setVisible(false);
+					lblInventory.setVisible(false);
+				}
+			}
+		});
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(585, 21, 280, 217);
+		contentPane.add(label);
+		
+		JLabel lblMembername = new JLabel("");
+		lblMembername.setFont(new Font("Agency FB", Font.BOLD, 25));
+		lblMembername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMembername.setBounds(626, 244, 224, 40);
+		contentPane.add(lblMembername);
+		
+		JButton label_1 = new JButton("");
+		label_1.setContentAreaFilled(false);
+		label_1.setBorder(UIManager.getBorder("Button.border"));
+		label_1.setVisible(false);
+		label_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		label_1.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/syring.png")));
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setBounds(221, 107, 79, 75);
+		panel_1.add(label_1);
+		
+		JButton label_2 = new JButton("");
+		label_2.setContentAreaFilled(false);
+		label_2.setBorder(UIManager.getBorder("Button.border"));
+		label_2.setHorizontalTextPosition(SwingConstants.LEFT);
+		label_2.setVisible(false);
+		label_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		label_2.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/Painkillers1.png")));
+		label_2.setBounds(371, 107, 79, 75);
+		panel_1.add(label_2);
+		
+		JButton lblMeditems = new JButton("");
+		lblMeditems.setContentAreaFilled(false);
+		lblMeditems.setBorder(UIManager.getBorder("Button.border"));
+		lblMeditems.setVisible(false);
+		lblMeditems.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblMeditems.setBounds(71, 107, 79, 75);
+		panel_1.add(lblMeditems);
+//		ImageIcon img = lblMeditems.getIcon();
+//		lblMeditems.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/Bandage1.png")));
+		lblMeditems.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblX = new JLabel("");
+		lblX.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX.setBounds(20, 171, 63, 20);
+		panel_1.add(lblX);
+		
+		JLabel lblX_1 = new JLabel("");
+		lblX_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX_1.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX_1.setBounds(103, 171, 63, 20);
+		panel_1.add(lblX_1);
+		
+		JLabel lblX_2 = new JLabel("");
+		lblX_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX_2.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX_2.setBounds(186, 171, 63, 20);
+		panel_1.add(lblX_2);
+		
+		JLabel lblX_3 = new JLabel("");
+		lblX_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX_3.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX_3.setBounds(269, 171, 63, 20);
+		panel_1.add(lblX_3);
+		
+		JLabel lblX_4 = new JLabel("");
+		lblX_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX_4.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX_4.setBounds(352, 171, 63, 20);
+		panel_1.add(lblX_4);
+		
+		JLabel lblX_5 = new JLabel("");
+		lblX_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblX_5.setFont(new Font("Agency FB", Font.BOLD, 18));
+		lblX_5.setBounds(435, 171, 63, 20);
+		panel_1.add(lblX_5);
+		
 		
 		JToggleButton btnSpaceStore = new JToggleButton("Space Outpost");
 		btnSpaceStore.setEnabled(false);
@@ -779,7 +818,6 @@ public class MainGame extends JFrame {
 			
 			crewNum += 1;
 		}
-		
 		
 		/*
 		 * 
@@ -936,8 +974,21 @@ public class MainGame extends JFrame {
 				
 			}
 		});
-		
-		
+		JLabel planetImage = new JLabel("");
+		planetImage.setHorizontalAlignment(SwingConstants.RIGHT);
+		planetImage.setIcon(new ImageIcon(MainGame.class.getResource(PlanetInfo.CurrentPlanet().PlanetImageLink)));
+		planetImage.setBounds(25, 78, 281, 300);
+		panel_3.add(planetImage);
+		btnExplorePlanet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SpaceTravel spaceship = new SpaceTravel();
+				spaceship.setVisible(true);
+				System.out.println(spaceship.getPilotList()[0] == null);
+
+				
+			}
+		});
+
 		/*
 		 * 
 		 * USE ITEMS FROM THE INVENTORY
@@ -969,7 +1020,6 @@ public class MainGame extends JFrame {
 						btnUseItem.setSelected(false);
 						btnSleep.setEnabled(false);
 						btnRepairShip.setEnabled(false);
-						btnExplorePlanet_1.setEnabled(false);
 						btnLoot.setEnabled(false);
 						tglbtnNewToggleButton.setSelected(false);
 						tglbtnNewToggleButton.setEnabled(false);
@@ -1076,7 +1126,6 @@ public class MainGame extends JFrame {
 					btnUseItem.setSelected(false);
 					btnSleep.setEnabled(false);
 					btnRepairShip.setEnabled(false);
-					btnExplorePlanet_1.setEnabled(false);
 					btnLoot.setEnabled(false);
 					tglbtnNewToggleButton.setSelected(false);
 					tglbtnNewToggleButton.setEnabled(false);
@@ -1114,7 +1163,6 @@ public class MainGame extends JFrame {
 					btnUseItem.setSelected(false);
 					btnSleep.setEnabled(false);
 					btnRepairShip.setEnabled(false);
-					btnExplorePlanet_1.setEnabled(false);
 					btnLoot.setEnabled(false);
 					tglbtnNewToggleButton.setSelected(false);
 					tglbtnNewToggleButton.setEnabled(false);
@@ -1239,8 +1287,10 @@ public class MainGame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (btnSpaceStore.isSelected()) {
 					panel_2.setVisible(true);
+					panel_3.setVisible(false);
 				} else {
 					panel_2.setVisible(false);
+					panel_3.setVisible(true);
 				}
 			}
 		});
@@ -1255,30 +1305,7 @@ public class MainGame extends JFrame {
 		 */
 		btnNewButton_1.setText(GameEnvironment.NumberOfDays + " Days Remaining");
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_3.setBackground(Color.WHITE);
-		panel_3.setBounds(576, 460, 299, 202);
-		contentPane.add(panel_3);
-		panel_3.setLayout(null);
-		
-		JButton btnExplorePlanet = new JButton("Travel to new planet");
-		btnExplorePlanet.setBounds(48, 167, 192, 29);
-		panel_3.add(btnExplorePlanet);
-		
-		JLabel lblNewLabel = new JLabel("Current Planet:");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblNewLabel.setBounds(6, 6, 126, 29);
-		panel_3.add(lblNewLabel);
-		
 		contentPane.add(plagueSign);
-		btnExplorePlanet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Planet planet = new Planet();
-				planet.setVisible(true);
-				
-			}
-		});
 		/**
 		 * Action moving to next day
 		 * 
@@ -1312,9 +1339,7 @@ public class MainGame extends JFrame {
 						progressBar_2.setValue(i.tiredness);
 						progressBar_3.setValue(i.hunger);
 						
-						if (i.hasPlague) {
-							plagueSign.setVisible(true);;
-						} 
+				
 						
 						//reset number of moves
 						i.NumberOfMoves = 2;
@@ -1340,14 +1365,35 @@ public class MainGame extends JFrame {
 					btnNewButton_1.setText(" Finish ");
 				}
 				
+				
+
+				int indexCount = 0;
+				for (CrewMember i:CrewInfo.CrewList) {  //Checks if any crew members have died
+
+
+					if (i.isDead()) {
+						ButtonList[indexCount].setText(i.name + " has died!");
+						ButtonList[indexCount].setEnabled(false);
+					}
+					indexCount ++;
+				}
+				
+				int deadCrewMembers = 0;  //Checks if all players are dead
 				for (CrewMember i:CrewInfo.CrewList) {
 					if (i.isDead()) {
-						ButtonList[0] = Member_1;
-						
-						
+						deadCrewMembers ++;
 					}
-					
 				}
+				
+				if (deadCrewMembers == CrewInfo.CrewList.size()) { //If all players are dead, game over
+					GameOver gameover = new GameOver();
+					gameover.setVisible(true);
+					setVisible(false);
+				}
+				
+					
+					
+				
 				
 				btnNewButton_1.revalidate();
 				btnNewButton_1.repaint();

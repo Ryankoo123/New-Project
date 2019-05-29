@@ -35,6 +35,11 @@ public class CrewInfo {
 		FoodList.add(foodItem);
 	}
 	
+	public void clearPilots() {
+		PilotList[0] = null;
+		PilotList[1] = null;
+	}
+	
 	public String shipStatus() {
 		return "Name: " + ShipName + "\nHealth" + ShipHealth;
 	}
@@ -64,7 +69,6 @@ public class CrewInfo {
 	 */
 	
 	public static void main(String[] args) {
-		CrewInfo crewInfo = new CrewInfo();
 //		crewInfo.addMember(Type.TYPE1, "Mario");
 //		crewInfo.addMember(Type.TYPE2, "Jeff");
 //		crewInfo.addMember(Type.TYPE3, "Brad");
