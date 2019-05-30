@@ -1047,7 +1047,19 @@ public class MainGame extends JFrame {
 
 					RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					FoodItem a = new FoodItem(food.get(index_1));
-					CrewInfo.FoodList.add(a);
+					
+					boolean inlist = false;
+					for (FoodItem i:CrewInfo.FoodList) {
+						if (i.name == a.name) {
+							i.foodCount ++;
+							inlist = true;
+						}
+					}
+					if (inlist == false) {
+						CrewInfo.FoodList.add(a);
+					}
+					
+					
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
@@ -1065,7 +1077,18 @@ public class MainGame extends JFrame {
 				RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 					FoodItem b = new FoodItem(food.get(index_2));
-					CrewInfo.FoodList.add(b);
+					
+					boolean inlist = false;
+					for (FoodItem i:CrewInfo.FoodList) {
+						if (i.name == b.name) {
+							i.foodCount ++;
+							inlist = true;
+						}
+					}
+					if (inlist == false) {
+						CrewInfo.FoodList.add(b);
+					}
+					
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
@@ -1085,7 +1108,19 @@ public class MainGame extends JFrame {
 
 					RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					MedicalItem c = new MedicalItem(medicine.get(index_3));
-					CrewInfo.MedicalList.add(c);
+					
+					boolean inlist = false;
+					for (MedicalItem i:CrewInfo.MedicalList) {
+						if (i.name == c.name) {
+							i.medCount ++;
+							inlist = true;
+						}
+					}
+					if (inlist == false) {
+						CrewInfo.MedicalList.add(c);
+					}
+					
+					
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
@@ -1104,7 +1139,20 @@ public class MainGame extends JFrame {
 
 					RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					FoodItem d = new FoodItem(food.get(index_4));
-					CrewInfo.FoodList.add(d);
+					
+					boolean inlist = false;
+					for (FoodItem i:CrewInfo.FoodList) {
+						if (i.name == d.name) {
+							i.foodCount ++;
+							inlist = true;
+						}
+					}
+					if (inlist == false) {
+						CrewInfo.FoodList.add(d);
+					}
+					
+					
+					
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {

@@ -25,7 +25,7 @@ public class randomEvent {
 	}
 		
 	public boolean hasShipPart() {
-		if (Math.random() > 0.10) {
+		if (Math.random() > 0.80) {
 			return true;
 		} else {
 			return false;
@@ -57,7 +57,9 @@ public class randomEvent {
 	public boolean alienPirates() {
 		if (Math.random() > 0.70 && CrewInfo.FoodList.size() > 1) {
 			int indexNum = (int) (Math.random() * 100) % CrewInfo.FoodList.size();
-			CrewInfo.FoodList.remove(indexNum);
+			if (CrewInfo.FoodList.get(indexNum).foodCount > 0) {
+				CrewInfo.FoodList.get(indexNum).foodCount --;
+			}
 			return true;
 		}
 		return false;

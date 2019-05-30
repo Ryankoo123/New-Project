@@ -10,10 +10,10 @@ import spaceExplorer.Medicine;
 
 
 public class MedicalItem {
-	private String name;
-	private boolean CuresPlague = false;
-	private int HealthIncrease = 0;
-	private int price;
+	public String name;
+	public boolean CuresPlague = false;
+	public int HealthIncrease = 0;
+	public int price;
 	public String medimg;
 	public int medCount = 1;
 	
