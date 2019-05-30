@@ -72,6 +72,10 @@ public class MainGame extends JFrame {
 	public JButton[] ButtonList = new JButton[4];
 	public ArrayList<Food> food = new ArrayList<Food>(Arrays.asList(Food.values()));
 	public ArrayList<Medicine> medicine = new ArrayList<Medicine>(Arrays.asList(Medicine.values()));
+	public int index_1 = 0;
+	public int index_2 = 1;
+	public int index_3;
+	public int index_4;
 
 
 	
@@ -988,25 +992,20 @@ public class MainGame extends JFrame {
 		panel_4.setVisible(false);
 		
 		
-		JButton RandomItem = new JButton(""); //
+		JButton RandomItem = new JButton(""); 
+		RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorer/Chicken.png")));
+
 		SpaceTerrain.add(RandomItem);
-		int index = randomEvent.randomFoodItemIndex();
-		if (index >= 0) {
-			FoodItem a = new FoodItem(food.get(index));
-			RandomItem.setIcon(new ImageIcon(MainGame.class.getResource(a.imageIcon)));
-		}
+
 		RandomItem.setBounds(16, 189, 79, 59);
 		RandomItem.setOpaque(false);
 		RandomItem.setContentAreaFilled(false);
 		RandomItem.setBorderPainted(false);
 		
-		
 		JButton RandomItem_1 = new JButton("");
-		int index_1 = randomEvent.randomFoodItemIndex();
-		if (index_1 >= 0) {
-			FoodItem b = new FoodItem(food.get(index_1));
-			RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource(b.imageIcon)));
-		}
+		RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorer/burger.png")));
+
+
 		RandomItem_1.setOpaque(false);
 		RandomItem_1.setContentAreaFilled(false);
 		RandomItem_1.setBorderPainted(false);
@@ -1015,11 +1014,7 @@ public class MainGame extends JFrame {
 		
 		
 		JButton RandomItem_2 = new JButton("");
-		int index_2 = randomEvent.randomMedicalItemIndex();
-		if (index_2 >= 0) {
-			MedicalItem c = new MedicalItem(medicine.get(index_2));
-			RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource(c.medimg)));		
-			}
+
 		RandomItem_2.setOpaque(false);
 		RandomItem_2.setContentAreaFilled(false);
 		RandomItem_2.setBorderPainted(false);
@@ -1028,11 +1023,7 @@ public class MainGame extends JFrame {
 		
 		
 		JButton RandomItem_3 = new JButton("");
-		int index_3 = randomEvent.randomFoodItemIndex();
-		if (index_3 >= 0) {
-			FoodItem d = new FoodItem(food.get(index_3));
-			RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource(d.imageIcon)));		
-			}
+
 		RandomItem_3.setOpaque(false);
 		RandomItem_3.setContentAreaFilled(false);
 		RandomItem_3.setBorderPainted(false);
@@ -1041,9 +1032,6 @@ public class MainGame extends JFrame {
 		
 		
 		JButton RandomItem_4 = new JButton("");		
-		if (randomEvent.hasShipPart()) {
-			RandomItem_4.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/parts.png")));		
-			}
 		RandomItem_4.setOpaque(false);
 		RandomItem_4.setContentAreaFilled(false);
 		RandomItem_4.setBorderPainted(false);
@@ -1058,14 +1046,16 @@ public class MainGame extends JFrame {
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
-					FoodItem a = new FoodItem(food.get(index));
+					FoodItem a = new FoodItem(food.get(index_1));
 					CrewInfo.FoodList.add(a);
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
 						tglbtnNewToggleButton.setEnabled(false);
 					}
-				} 
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "The selected crew member ran out of actions!");
+				}
 			}
 		});
 		
@@ -1074,14 +1064,16 @@ public class MainGame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
-					FoodItem b = new FoodItem(food.get(index_1));
+					FoodItem b = new FoodItem(food.get(index_2));
 					CrewInfo.FoodList.add(b);
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
 						tglbtnNewToggleButton.setEnabled(false);
-					}
-				} 
+										}
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "The selected crew member ran out of actions!");
+				}
 			}
 		});
 		
@@ -1092,14 +1084,16 @@ public class MainGame extends JFrame {
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
-					MedicalItem c = new MedicalItem(medicine.get(index_2));
+					MedicalItem c = new MedicalItem(medicine.get(index_3));
 					CrewInfo.MedicalList.add(c);
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves == 0) {
 						tglbtnNewToggleButton.setEnabled(false);
-					}
-				} 
+						}
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "The selected crew member ran out of actions!");
+				}
 			}
 		});
 		
@@ -1109,7 +1103,7 @@ public class MainGame extends JFrame {
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
-					FoodItem d = new FoodItem(food.get(index_3));
+					FoodItem d = new FoodItem(food.get(index_4));
 					CrewInfo.FoodList.add(d);
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
@@ -1117,7 +1111,9 @@ public class MainGame extends JFrame {
 						tglbtnNewToggleButton.setEnabled(false);
 					}
 
-				} 
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "The selected crew member ran out of actions!");
+				}
 
 			}
 		});
@@ -1129,6 +1125,7 @@ public class MainGame extends JFrame {
 				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 					RandomItem_4.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+					GameEnvironment.pieces --;
 
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
 					lblShipPieces.setText("Transporter Parts: " + GameEnvironment.pieces);
@@ -1143,6 +1140,8 @@ public class MainGame extends JFrame {
 						tglbtnNewToggleButton.setEnabled(false);
 					} 
 
+				} else {
+					JOptionPane.showMessageDialog(contentPane, "The selected crew member ran out of actions!");
 				}
 
 
@@ -1200,42 +1199,41 @@ public class MainGame extends JFrame {
 			        		
 	
 			        		
-			        		int index_d = randomEvent.randomFoodItemIndex();
-			        		if (index_d >= 0) {
-			        			FoodItem a = new FoodItem(food.get(index_d));
-			        			RandomItem.setIcon(new ImageIcon(MainGame.class.getResource(a.imageIcon)));
+			        		int index_1 = randomEvent.randomFoodItemIndex();
+			        		if (index_1 >= 0) {
+			        			FoodItem e = new FoodItem(food.get(index_1));
+			        			RandomItem.setIcon(new ImageIcon(MainGame.class.getResource(e.imageIcon)));
 			        		}
 
 			        		
 			        		
-			        		int index_a = randomEvent.randomFoodItemIndex();
-			        		if (index_a >= 0) {
-			        			FoodItem b = new FoodItem(food.get(index_a));
-			        			RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource(b.imageIcon)));
+			        		int index_2 = randomEvent.randomFoodItemIndex();
+			        		if (index_2 >= 0) {
+			        			FoodItem f = new FoodItem(food.get(index_2));
+			        			RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource(f.imageIcon)));
 			        		}
 
 			        		
 			        		
 			        		
-			        		int index_b = randomEvent.randomMedicalItemIndex();
-			        		if (index_b >= 0) {
-			        			MedicalItem c = new MedicalItem(medicine.get(index_b));
-			        			RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource(c.medimg)));		
+			        		int index_3 = randomEvent.randomMedicalItemIndex();
+			        		if (index_3 >= 0) {
+			        			MedicalItem g = new MedicalItem(medicine.get(index_3));
+			        			RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource(g.medimg)));		
 			        			}
 
 			        		
 			        		
-			        		int index_c = randomEvent.randomFoodItemIndex();
-			        		if (index_c >= 0) {
-			        			FoodItem d = new FoodItem(food.get(index_c));
-			        			RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource(d.imageIcon)));		
+			        		int index_4 = randomEvent.randomFoodItemIndex();
+			        		if (index_4 >= 0) {
+			        			FoodItem h = new FoodItem(food.get(index_4));
+			        			RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource(h.imageIcon)));		
 			        			}
 
 			        		
 			        		
 			        		if (randomEvent.hasShipPart()) {
 			        			RandomItem_4.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/parts.png")));		
-			        			System.out.println("lol");
 
 			        		}		
 			        		

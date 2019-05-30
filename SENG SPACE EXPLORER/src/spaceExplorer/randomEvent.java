@@ -25,7 +25,7 @@ public class randomEvent {
 	}
 		
 	public boolean hasShipPart() {
-		if (Math.random() > 0.80) {
+		if (Math.random() > 0.10) {
 			return true;
 		} else {
 			return false;
