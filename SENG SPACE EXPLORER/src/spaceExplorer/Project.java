@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.SpringLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

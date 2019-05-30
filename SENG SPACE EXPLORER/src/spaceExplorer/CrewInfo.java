@@ -16,7 +16,7 @@ public class CrewInfo {
 	public static ArrayList<CrewMember> CrewList = new ArrayList<CrewMember>();
 	public static ArrayList<MedicalItem> MedicalList = new ArrayList<MedicalItem>();
 	public static ArrayList<FoodItem> FoodList = new ArrayList<FoodItem>();
-//	public static ArrayList<CharNames> NameList = new ArrayList<CharNames>();
+	
 	
 	public void addMember(Type type, String name) {
 		CrewMember crewMember = new CrewMember();
@@ -34,7 +34,6 @@ public class CrewInfo {
 		FoodItem foodItem = new FoodItem(food);
 		FoodList.add(foodItem);
 	}
-	
 	
 	public String shipStatus() {
 		return "Name: " + ShipName + "\nHealth" + ShipHealth;
@@ -65,6 +64,7 @@ public class CrewInfo {
 	 */
 	
 	public static void main(String[] args) {
+		CrewInfo crewInfo = new CrewInfo();
 //		crewInfo.addMember(Type.TYPE1, "Mario");
 //		crewInfo.addMember(Type.TYPE2, "Jeff");
 //		crewInfo.addMember(Type.TYPE3, "Brad");

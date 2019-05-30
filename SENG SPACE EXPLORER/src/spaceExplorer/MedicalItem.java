@@ -11,11 +11,11 @@ import spaceExplorer.Medicine;
 
 public class MedicalItem {
 	public String name;
-	public boolean CuresPlague = false;
-	public int HealthIncrease = 0;
-	public int price;
+	private boolean CuresPlague = false;
+	private int HealthIncrease = 0;
+	private int price;
 	public String medimg;
-	public int medCount = 1;
+	public int medCount;
 	
 	Medicine medicine;
 	
@@ -25,6 +25,7 @@ public class MedicalItem {
             name = "Syringe";
             price = 40;
             HealthIncrease = 60;
+            medCount = 0;
             CuresPlague = true;				//label_1.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/syring.png")));
             medimg = "/spaceExplorerImages/syring.png";
             break;
@@ -32,12 +33,14 @@ public class MedicalItem {
             name = "Painkiller";
             price = 25;
             HealthIncrease = 20;
+            medCount = 1;
             medimg = "/spaceExplorerImages/Painkillers1.png";
             break;
         case MEDICINE3:
             name = "Bandage";
             price = 5;
             HealthIncrease = 10;
+            medCount = 1;
             medimg = "/spaceExplorerImages/Bandage1.png";
             break;
             }

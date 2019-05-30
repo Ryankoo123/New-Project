@@ -3,38 +3,6 @@ package spaceExplorer;
 import javax.swing.JOptionPane;
 
 public class randomEvent {
-	
-	public int randomFoodItemIndex() {
-		if (Math.random() > 0.40) {
-			int indexNum = (int) (Math.random() * 100) % 6;
-
-			return indexNum;
-		} else {
-			return -1;
-		}
-	}
-		
-	public int randomMedicalItemIndex() {
-		if (Math.random() > 0.40) {
-			int indexNum = (int) (Math.random() * 100) % 3;
-
-			return indexNum;
-		} else {
-			return -1;
-		}
-	}
-		
-	public boolean hasShipPart() {
-		if (Math.random() > 0.80) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-
-	
-	
 		
 	public void asteroidBelt() {
 		CrewInfo.ShipHealth = (CrewInfo.ShipHealth * 0.70) - 5;
@@ -57,9 +25,7 @@ public class randomEvent {
 	public boolean alienPirates() {
 		if (Math.random() > 0.70 && CrewInfo.FoodList.size() > 1) {
 			int indexNum = (int) (Math.random() * 100) % CrewInfo.FoodList.size();
-			if (CrewInfo.FoodList.get(indexNum).foodCount > 0) {
-				CrewInfo.FoodList.get(indexNum).foodCount --;
-			}
+			CrewInfo.FoodList.remove(indexNum);
 			return true;
 		}
 		return false;
