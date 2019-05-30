@@ -1043,7 +1043,6 @@ public class MainGame extends JFrame {
 		JButton RandomItem_4 = new JButton("");		
 		if (randomEvent.hasShipPart()) {
 			RandomItem_4.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/parts.png")));		
-			System.out.println("lol");
 			}
 		RandomItem_4.setOpaque(false);
 		RandomItem_4.setContentAreaFilled(false);
@@ -1056,7 +1055,7 @@ public class MainGame extends JFrame {
 		
 		RandomItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0 && index > 0) {
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					FoodItem a = new FoodItem(food.get(index));
@@ -1074,7 +1073,7 @@ public class MainGame extends JFrame {
 		RandomItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
-				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0 && index_1 > 0) {
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 					FoodItem b = new FoodItem(food.get(index_1));
 					CrewInfo.FoodList.add(b);
 					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
@@ -1090,7 +1089,7 @@ public class MainGame extends JFrame {
 		
 		RandomItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0 && index_2 > 0) {
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					MedicalItem c = new MedicalItem(medicine.get(index_2));
@@ -1107,7 +1106,7 @@ public class MainGame extends JFrame {
 
 		RandomItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0 && index_3 > 0) {
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 
 					RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
 					FoodItem d = new FoodItem(food.get(index_3));
@@ -1127,11 +1126,11 @@ public class MainGame extends JFrame {
 
 		RandomItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0 && index > 0) {
-
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
 					RandomItem_4.setIcon(new ImageIcon(MainGame.class.getResource("")));
+					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+
 					tglbtnNewToggleButton.setText("Actions    X " + CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves);
-					GameEnvironment.pieces --;
 					lblShipPieces.setText("Transporter Parts: " + GameEnvironment.pieces);
 					
 					if (GameEnvironment.pieces == 0) {
