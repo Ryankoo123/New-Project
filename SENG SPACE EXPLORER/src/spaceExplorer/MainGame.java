@@ -987,7 +987,7 @@ public class MainGame extends JFrame {
 		panel_4.add(SpaceTerrain);
 		
 		
-		JButton RandomItem = new JButton("");
+		JButton RandomItem = new JButton(""); //
 		SpaceTerrain.add(RandomItem);
 		int index = randomEvent.randomFoodItemIndex();
 		if (index >= 0) {
@@ -1001,9 +1001,14 @@ public class MainGame extends JFrame {
 		RandomItem.setBorderPainted(false);
 		RandomItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
-				FoodItem a = new FoodItem(food.get(index));
-				CrewInfo.FoodList.add(a);
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+					RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
+					FoodItem a = new FoodItem(food.get(index));
+					CrewInfo.FoodList.add(a);
+					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+				}
+
 
 			}
 		});
@@ -1019,11 +1024,14 @@ public class MainGame extends JFrame {
 		RandomItem_1.setBorderPainted(false);
 		RandomItem_1.setBounds(107, 167, 79, 59);
 		SpaceTerrain.add(RandomItem_1);
-		RandomItem.addActionListener(new ActionListener() {
+		RandomItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
-				FoodItem b = new FoodItem(food.get(index_1));
-				CrewInfo.FoodList.add(b);
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+					FoodItem b = new FoodItem(food.get(index_1));
+					CrewInfo.FoodList.add(b);
+					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+				}
 
 			}
 		});
@@ -1042,9 +1050,14 @@ public class MainGame extends JFrame {
 		SpaceTerrain.add(RandomItem_2);
 		RandomItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
-				FoodItem c = new FoodItem(food.get(index_2));
-				CrewInfo.FoodList.add(c);
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+					RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
+					MedicalItem c = new MedicalItem(medicine.get(index_2));
+					CrewInfo.MedicalList.add(c);
+					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+				}
+
 
 			}
 		});
@@ -1059,11 +1072,16 @@ public class MainGame extends JFrame {
 		RandomItem_3.setContentAreaFilled(false);
 		RandomItem_3.setBorderPainted(false);
 		RandomItem_3.setBounds(319, 150, 79, 59);
-		RandomItem.addActionListener(new ActionListener() {
+		RandomItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
-				FoodItem d = new FoodItem(food.get(index_3));
-				CrewInfo.FoodList.add(d);
+				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+					RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
+					FoodItem d = new FoodItem(food.get(index_3));
+					CrewInfo.FoodList.add(d);
+					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+				}
+
 
 			}
 		});
@@ -1115,6 +1133,88 @@ public class MainGame extends JFrame {
 			        		PlanetInfo.TravelToNewPlanet();
 				    		planetImage.setIcon(new ImageIcon(MainGame.class.getResource(PlanetInfo.CurrentPlanet().PlanetImageLink)));
 			        		PlanetLabel.setText("Current Planet: " + PlanetInfo.CurrentPlanet().PlanetName);
+			        		
+			        		
+			        		
+			        		
+			        		
+			        		int index = randomEvent.randomFoodItemIndex();
+			        		if (index >= 0) {
+			        			FoodItem a = new FoodItem(food.get(index));
+			        			RandomItem.setIcon(new ImageIcon(MainGame.class.getResource(a.imageIcon)));
+			        		}
+
+			        		RandomItem.addActionListener(new ActionListener() {
+			        			public void actionPerformed(ActionEvent e) {
+			        				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+			        					RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
+			        					FoodItem a = new FoodItem(food.get(index));
+			        					CrewInfo.FoodList.add(a);
+			        					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+			        				}
+
+			        			}
+			        		});
+			        		
+			        		int index_1 = randomEvent.randomFoodItemIndex();
+			        		if (index_1 >= 0) {
+			        			FoodItem b = new FoodItem(food.get(index_1));
+			        			RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource(b.imageIcon)));
+			        		}
+
+			        		RandomItem_1.addActionListener(new ActionListener() {
+			        			public void actionPerformed(ActionEvent e) {
+			        				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+			        					RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
+			        					FoodItem b = new FoodItem(food.get(index_1));
+			        					CrewInfo.FoodList.add(b);
+			        					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+			        				}
+
+			        			}
+			        		});
+			        		
+			        		
+			        		int index_2 = randomEvent.randomMedicalItemIndex();
+			        		if (index_2 >= 0) {
+			        			MedicalItem c = new MedicalItem(medicine.get(index_2));
+			        			RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource(c.medimg)));		
+			        			}
+
+			        		RandomItem_2.addActionListener(new ActionListener() {
+			        			public void actionPerformed(ActionEvent e) {
+			        				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+			        					RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
+			        					MedicalItem c = new MedicalItem(medicine.get(index_2));
+			        					CrewInfo.MedicalList.add(c);
+			        					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+			        				}
+
+
+			        			}
+			        		});
+			        		
+			        		int index_3 = randomEvent.randomFoodItemIndex();
+			        		if (index_3 >= 0) {
+			        			FoodItem d = new FoodItem(food.get(index_3));
+			        			RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource(d.imageIcon)));		
+			        			}
+
+			        		RandomItem_3.addActionListener(new ActionListener() {
+			        			public void actionPerformed(ActionEvent e) {
+			        				if (CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves > 0) {
+
+			        					RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
+			        					FoodItem d = new FoodItem(food.get(index_3));
+			        					CrewInfo.FoodList.add(d);
+			        					CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves --;
+			        				}
+
+
+			        			}
+			        		});
 
 			        	}
 			        }
