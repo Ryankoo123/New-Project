@@ -25,6 +25,7 @@ import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.BevelBorder;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.awt.Font;
 import java.awt.event.ContainerAdapter;
 import java.awt.event.ContainerEvent;
@@ -37,13 +38,15 @@ import java.awt.Button;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
+import javax.swing.border.EtchedBorder;
 
 
 public class CrewSelection extends JFrame {
 
 	private JPanel contentPane;
 	public spaceExplorer.Type charType;
-	private boolean remove = false;
+	private int j = 0;
+	public LinkedList<JButton> memberNames = new LinkedList<JButton>();
 	
 	/**
 	 * Launch the application.
@@ -72,6 +75,7 @@ public class CrewSelection extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 50, 1280, 720);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -110,10 +114,10 @@ public class CrewSelection extends JFrame {
 		lblNewLabel_1.setBounds(245, 300, 347, 25);
 		
 		JButton btnAdd = new JButton("ADD >");
-		btnAdd.setBounds(831, 322, 126, 46);
+		btnAdd.setBounds(807, 323, 126, 46);
 		
 		JButton btnReset = new JButton("< REMOVE");
-		btnReset.setBounds(831, 375, 126, 46);
+		btnReset.setBounds(807, 376, 126, 46);
 		
 		JLabel lblSelectCharacter = new JLabel("Choose your team");
 		lblSelectCharacter.setHorizontalAlignment(SwingConstants.CENTER);
@@ -123,7 +127,7 @@ public class CrewSelection extends JFrame {
 		JButton btnNewButton = new JButton("Start Adventure");
 		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnNewButton.setFont(new Font("Palatino Linotype", Font.BOLD, 30));
-		btnNewButton.setBounds(494, 569, 277, 61);
+		btnNewButton.setBounds(495, 569, 277, 61);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -148,16 +152,19 @@ public class CrewSelection extends JFrame {
 		lblCharacterInfo.setFont(new Font("Palatino Linotype", Font.BOLD, 25));
 		
 		JPanel panel = new JPanel();
+		panel.setOpaque(false);
 		panel.setBounds(984, 241, 152, 60);
-		panel.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false);
 		panel_1.setBounds(984, 308, 152, 60);
-		panel_1.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
 		panel_2.setBounds(984, 374, 152, 60);
-		panel_2.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		contentPane.setLayout(null);
 		contentPane.add(lblSelectCharacter);
 		contentPane.add(btnCharacter);
@@ -176,13 +183,38 @@ public class CrewSelection extends JFrame {
 		contentPane.add(btnReset);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		JButton button = new JButton("");
+		button.setBounds(10, 11, 132, 38);
+		panel.add(button);
 		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JButton button_1 = new JButton("");
+		button_1.setBounds(10, 11, 132, 38);
+		panel_1.add(button_1);
 		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JButton button_2 = new JButton("");
+		button_2.setBounds(10, 11, 132, 38);
+		panel_2.add(button_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setOpaque(false);
+		panel_3.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		panel_3.setBounds(984, 440, 152, 60);
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton button_3 = new JButton("");
+		button_3.setBounds(10, 11, 132, 38);
+		panel_3.add(button_3);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblImage = new JLabel("");
 		lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImage.setBounds(494, 193, 277, 365);
+		lblImage.setBounds(485, 193, 277, 365);
 		contentPane.add(lblImage);
 		
 		JSeparator separator = new JSeparator();
@@ -191,10 +223,15 @@ public class CrewSelection extends JFrame {
 		separator.setBounds(196, 175, 875, 13);
 		contentPane.add(separator);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
-		panel_3.setBounds(984, 440, 152, 60);
-		contentPane.add(panel_3);
+		//Member Names
+		memberNames.add(button);
+		memberNames.add(button_1);
+		memberNames.add(button_2);
+		memberNames.add(button_3);
+		
+		for (JButton i: memberNames) {
+			i.setVisible(false);
+		}
 		
 		//character info		
 		btnCharacter.addActionListener(new ActionListener() {
@@ -273,21 +310,12 @@ public class CrewSelection extends JFrame {
 				String charName = JOptionPane.showInputDialog("Name your character");
 				crewinfo.addMember(charType, charName);			
 				
-				int j = 0;
-				if (remove) {
-					j = 0;
-					remove = false;
-				}
-				
 				if (crewinfo.CrewList.size() <= 4) {					//add member icon
-					for (CrewMember i : crewinfo.getCrewList()) {
-						JButton bttn = new JButton(i.name);
-						bttn.setBounds(992, 250 + j, 132, 38);			//956, 355, 132, 38
-						contentPane.add(bttn);
-						bttn.repaint();
-						j += 65;
-						
-					}	
+					memberNames.get(j).setText(charName);
+					memberNames.get(j).setVisible(true);
+					memberNames.get(j).revalidate();
+					memberNames.get(j).repaint();
+					j += 1;	
 				}			
 			}
 		});
@@ -296,12 +324,16 @@ public class CrewSelection extends JFrame {
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (crewinfo.CrewList.size() != 0) {
+					j = 0;
 					while (crewinfo.CrewList.size() > 0) {
-						crewinfo.CrewList.remove(0);	
+						crewinfo.CrewList.remove(0);
 					}
-					remove = true;
-					revalidate();
-					repaint();
+					for (JButton i: memberNames) {
+						i.setText("");
+						i.setVisible(false);
+						i.revalidate();
+						i.repaint();
+					}
 				}
 			}
 		});

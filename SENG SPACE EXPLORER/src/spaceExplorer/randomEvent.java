@@ -22,10 +22,19 @@ public class randomEvent {
 		} else {
 			return -1;
 		}
+	}
+		
+	public boolean hasShipPart() {
+		if (Math.random() > 0.80) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 
 	
-	}
+	
 		
 	public void asteroidBelt() {
 		CrewInfo.ShipHealth = (CrewInfo.ShipHealth * 0.70) - 5;
