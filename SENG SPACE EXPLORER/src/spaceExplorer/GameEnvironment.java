@@ -8,6 +8,11 @@ public class GameEnvironment {
 	public static int money;
 	public static int actions;
 	public static int currentplayer = 0;
+	public static FoodItem[] FoodList = new FoodItem[6];
+	public static CrewMember[] PilotList = new CrewMember[2];
+	
+	
+
 	
 	public void setNumberOfDays(int newNumber) {
 		NumberOfDays = newNumber;
@@ -19,8 +24,5 @@ public class GameEnvironment {
 
 
 	public static void main(String[] args) {
-//		GameEnvironment gameEnvironment = new GameEnvironment();
-//		gameEnvironment.setNumberOfDays(4);
-//		System.out.println(gameEnvironment.pieces);
 		}
 }

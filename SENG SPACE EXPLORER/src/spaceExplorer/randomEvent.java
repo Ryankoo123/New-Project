@@ -3,6 +3,29 @@ package spaceExplorer;
 import javax.swing.JOptionPane;
 
 public class randomEvent {
+	
+	public int randomFoodItemIndex() {
+		if (Math.random() > 0.40) {
+			int indexNum = (int) (Math.random() * 100) % 6;
+
+			return indexNum;
+		} else {
+			return -1;
+		}
+	}
+		
+	public int randomMedicalItemIndex() {
+		if (Math.random() > 0.40) {
+			int indexNum = (int) (Math.random() * 100) % 3;
+
+			return indexNum;
+		} else {
+			return -1;
+		}
+	
+
+	
+	}
 		
 	public void asteroidBelt() {
 		CrewInfo.ShipHealth = (CrewInfo.ShipHealth * 0.70) - 5;

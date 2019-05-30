@@ -35,10 +35,6 @@ public class CrewInfo {
 		FoodList.add(foodItem);
 	}
 	
-	public void clearPilots() {
-		PilotList[0] = null;
-		PilotList[1] = null;
-	}
 	
 	public String shipStatus() {
 		return "Name: " + ShipName + "\nHealth" + ShipHealth;

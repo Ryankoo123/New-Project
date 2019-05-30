@@ -28,6 +28,7 @@ import javax.swing.ListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 import java.awt.event.ActionEvent;
@@ -69,6 +70,10 @@ public class MainGame extends JFrame {
 	public LinkedList<JLabel> lblItemCountList = new LinkedList<JLabel>();			//food item count list
 	public LinkedList<JLabel> lblItemCountList2 = new LinkedList<JLabel>();			//Med item count list
 	public JButton[] ButtonList = new JButton[4];
+	public ArrayList<Food> food = new ArrayList<Food>(Arrays.asList(Food.values()));
+	public ArrayList<Medicine> medicine = new ArrayList<Medicine>(Arrays.asList(Medicine.values()));
+
+
 	
 	/**
 	 * Launch the application.
@@ -144,13 +149,13 @@ public class MainGame extends JFrame {
 
 		
 		JLabel lblShipStatus = new JLabel("");
-		lblShipStatus.setBounds(154, 308, 268, 39);
+		lblShipStatus.setBounds(154, 290, 268, 39);
 		lblShipStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShipStatus.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
 		contentPane.add(lblShipStatus);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(136, 341, 304, 25);
+		progressBar.setBounds(138, 320, 304, 25);
 		progressBar.setStringPainted(true);
 		progressBar.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		progressBar.setToolTipText("Ship status.");
@@ -226,7 +231,7 @@ public class MainGame extends JFrame {
 
 		
 		
-		JButton btnLoot = new JButton("Loot");
+		JToggleButton btnLoot = new JToggleButton("Loot Planet");
 		btnLoot.setEnabled(false);
 		btnLoot.setBounds(22, 32, 262, 40);
 		panel.add(btnLoot);
@@ -234,7 +239,7 @@ public class MainGame extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.RAISED, null, null));
-		panel_1.setBounds(27, 461, 548, 202);
+		panel_1.setBounds(6, 460, 548, 202);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -322,14 +327,14 @@ public class MainGame extends JFrame {
 		
 		PlanetInfo PlanetInfo = new PlanetInfo();
 		Planet PlanetRed = new Planet("Planet Red", "/spaceExplorerImages/planetRed.png");	
-		Planet PlanetBlue = new Planet("Planet Red", "/spaceExplorerImages/planetBlue.png"); 
-		Planet PlanetCyan = new Planet("Planet Red", "/spaceExplorerImages/planetCyan.png"); 
-		Planet PlanetDarkBlue = new Planet("Planet Red", "/spaceExplorerImages/planetDarkBlue.png"); 
-		Planet PlanetGray = new Planet("Planet Red", "/spaceExplorerImages/planetGray.png"); 
-		Planet PlanetGreen = new Planet("Planet Red", "/spaceExplorerImages/planetGreen.png"); 
-		Planet PlanetLime = new Planet("Planet Red", "/spaceExplorerImages/planetLime.png"); 
-		Planet PlanetPurple = new Planet("Planet Red", "/spaceExplorerImages/planetPurple.png");
-		Planet PlanetYellow = new Planet("Planet Red", "/spaceExplorerImages/planetYellow.png");
+		Planet PlanetBlue = new Planet("Planet Blue", "/spaceExplorerImages/planetBlue.png"); 
+		Planet PlanetCyan = new Planet("Planet Cyan", "/spaceExplorerImages/planetCyan.png"); 
+		Planet PlanetDarkBlue = new Planet("Planet DarkBlue", "/spaceExplorerImages/planetDarkBlue.png"); 
+		Planet PlanetGray = new Planet("Planet Gray", "/spaceExplorerImages/planetGray.png"); 
+		Planet PlanetGreen = new Planet("Planet Green", "/spaceExplorerImages/planetGreen.png"); 
+		Planet PlanetLime = new Planet("Planet Lime", "/spaceExplorerImages/planetLime.png"); 
+		Planet PlanetPurple = new Planet("Planet Purple", "/spaceExplorerImages/planetPurple.png");
+		Planet PlanetYellow = new Planet("Planet Yellow", "/spaceExplorerImages/planetYellow.png");
 		
 		PlanetInfo.PlanetList[0] = PlanetRed;
 		PlanetInfo.PlanetList[1] = PlanetBlue;
@@ -339,7 +344,9 @@ public class MainGame extends JFrame {
 		PlanetInfo.PlanetList[5] = PlanetGreen;
 		PlanetInfo.PlanetList[6] = PlanetLime;
 		PlanetInfo.PlanetList[7] = PlanetPurple;
-		PlanetInfo.PlanetList[8] = PlanetYellow;		
+		PlanetInfo.PlanetList[8] = PlanetYellow;
+		
+		
 		
 
 		
@@ -532,7 +539,7 @@ public class MainGame extends JFrame {
 		JLabel lblMoney = new JLabel("Money: $" + GameEnvironment.money);
 		lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMoney.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblMoney.setBounds(27, 395, 207, 39);
+		lblMoney.setBounds(27, 357, 207, 39);
 		contentPane.add(lblMoney);
 		
 		JLabel label = new JLabel("");
@@ -826,7 +833,7 @@ public class MainGame extends JFrame {
 		JLabel lblShipPieces = new JLabel("Transporter Parts: " + GameEnvironment.pieces);
 		lblShipPieces.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShipPieces.setFont(new Font("Palatino Linotype", Font.PLAIN, 25));
-		lblShipPieces.setBounds(281, 395, 268, 39);
+		lblShipPieces.setBounds(280, 357, 268, 39);
 		contentPane.add(lblShipPieces); 
 				
 		
@@ -967,26 +974,169 @@ public class MainGame extends JFrame {
 			});
 		}
 		
+		
+		
+		JLabel SpaceTerrain = new JLabel(""); //Label for exploring planet
+		SpaceTerrain.setIcon(new ImageIcon(MainGame.class.getResource("/spaceExplorerImages/Terrain.png")));
+		SpaceTerrain.setBounds(0, 0, 427, 264);
 
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(64, 420, 427, 254);
+		contentPane.add(panel_4);
+		panel_4.setLayout(null);
+		panel_4.add(SpaceTerrain);
+		
+		
+		JButton RandomItem = new JButton("");
+		SpaceTerrain.add(RandomItem);
+		int index = randomEvent.randomFoodItemIndex();
+		if (index >= 0) {
+			FoodItem a = new FoodItem(food.get(index));
+			RandomItem.setIcon(new ImageIcon(MainGame.class.getResource(a.imageIcon)));
+
+		}
+		RandomItem.setBounds(16, 189, 79, 59);
+		RandomItem.setOpaque(false);
+		RandomItem.setContentAreaFilled(false);
+		RandomItem.setBorderPainted(false);
+		RandomItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RandomItem.setIcon(new ImageIcon(MainGame.class.getResource("")));
+				FoodItem a = new FoodItem(food.get(index));
+				CrewInfo.FoodList.add(a);
+
+			}
+		});
+		
+		JButton RandomItem_1 = new JButton("");
+		int index_1 = randomEvent.randomFoodItemIndex();
+		if (index_1 >= 0) {
+			FoodItem b = new FoodItem(food.get(index_1));
+			RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource(b.imageIcon)));
+		}
+		RandomItem_1.setOpaque(false);
+		RandomItem_1.setContentAreaFilled(false);
+		RandomItem_1.setBorderPainted(false);
+		RandomItem_1.setBounds(107, 167, 79, 59);
+		SpaceTerrain.add(RandomItem_1);
+		RandomItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RandomItem_1.setIcon(new ImageIcon(MainGame.class.getResource("")));
+				FoodItem b = new FoodItem(food.get(index_1));
+				CrewInfo.FoodList.add(b);
+
+			}
+		});
+		
+		
+		JButton RandomItem_2 = new JButton("");
+		int index_2 = randomEvent.randomMedicalItemIndex();
+		if (index_2 >= 0) {
+			MedicalItem c = new MedicalItem(medicine.get(index_2));
+			RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource(c.medimg)));		
+			}
+		RandomItem_2.setOpaque(false);
+		RandomItem_2.setContentAreaFilled(false);
+		RandomItem_2.setBorderPainted(false);
+		RandomItem_2.setBounds(207, 189, 79, 59);
+		SpaceTerrain.add(RandomItem_2);
+		RandomItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RandomItem_2.setIcon(new ImageIcon(MainGame.class.getResource("")));
+				FoodItem c = new FoodItem(food.get(index_2));
+				CrewInfo.FoodList.add(c);
+
+			}
+		});
+		
+		JButton RandomItem_3 = new JButton("");
+		int index_3 = randomEvent.randomFoodItemIndex();
+		if (index_3 >= 0) {
+			FoodItem d = new FoodItem(food.get(index_3));
+			RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource(d.imageIcon)));		
+			}
+		RandomItem_3.setOpaque(false);
+		RandomItem_3.setContentAreaFilled(false);
+		RandomItem_3.setBorderPainted(false);
+		RandomItem_3.setBounds(319, 150, 79, 59);
+		RandomItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RandomItem_3.setIcon(new ImageIcon(MainGame.class.getResource("")));
+				FoodItem d = new FoodItem(food.get(index_3));
+				CrewInfo.FoodList.add(d);
+
+			}
+		});
+		SpaceTerrain.add(RandomItem_3);
+		
+		panel_4.setVisible(false);
+		
+		
 		btnLoot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (btnLoot.isSelected()) {
+					panel_1.setVisible(false);
+					panel_4.setVisible(true);
+					btnSleep.setEnabled(false);
+					btnUseItem.setEnabled(false);
+					btnRepairShip.setEnabled(false);
+					
+				} else {
+					panel_1.setVisible(true);
+					panel_4.setVisible(false);
+					btnSleep.setEnabled(true);
+					btnUseItem.setEnabled(true);
+					btnRepairShip.setEnabled(true);
+				}
+
+				
+				
 				
 			}
 		});
 		JLabel planetImage = new JLabel("");
 		planetImage.setHorizontalAlignment(SwingConstants.RIGHT);
+		PlanetLabel.setText("Current Planet: " + PlanetInfo.CurrentPlanet().PlanetName);
 		planetImage.setIcon(new ImageIcon(MainGame.class.getResource(PlanetInfo.CurrentPlanet().PlanetImageLink)));
 		planetImage.setBounds(25, 78, 281, 300);
 		panel_3.add(planetImage);
-		btnExplorePlanet.addActionListener(new ActionListener() {
+
+		
+
+		btnExplorePlanet.addActionListener(new ActionListener() {  // when player clicks travel to new planet button
 			public void actionPerformed(ActionEvent e) {
 				SpaceTravel spaceship = new SpaceTravel();
+				spaceship.setVisible(false);
 				spaceship.setVisible(true);
-				System.out.println(spaceship.getPilotList()[0] == null);
+				spaceship.addWindowListener(new java.awt.event.WindowAdapter() {
+			        @Override
+			        public void windowClosed(java.awt.event.WindowEvent windowEvent) { //Checks if spaceTravel was closed
+			        	if (!Arrays.asList(GameEnvironment.PilotList).contains(null)) {
+			        		PlanetInfo.TravelToNewPlanet();
+				    		planetImage.setIcon(new ImageIcon(MainGame.class.getResource(PlanetInfo.CurrentPlanet().PlanetImageLink)));
+			        		PlanetLabel.setText("Current Planet: " + PlanetInfo.CurrentPlanet().PlanetName);
+
+			        	}
+			        }
+			    });
+			}
+			});
+			
+					
+				
+
+		
+		
+
 
 				
-			}
-		});
+				
+		
+		
+		
+		
+
+
 
 		/*
 		 * 
@@ -1142,6 +1292,7 @@ public class MainGame extends JFrame {
 		
 		btnRepairShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				CrewInfo.ShipHealth += CrewInfo.CrewList.get(GameEnvironment.currentplayer).repair;
 				CrewInfo.CrewList.get(GameEnvironment.currentplayer).NumberOfMoves -= 1;
 				if (CrewInfo.ShipHealth > 100) {
@@ -1305,6 +1456,10 @@ public class MainGame extends JFrame {
 		btnNewButton_1.setText(GameEnvironment.NumberOfDays + " Days Remaining");
 		
 		contentPane.add(plagueSign);
+		
+
+		
+	
 		/**
 		 * Action moving to next day
 		 * 
